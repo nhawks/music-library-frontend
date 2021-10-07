@@ -23,6 +23,8 @@ function SongTable(props) {
                             <td>{song.release_date}</td>
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
+                            <button onClick={deleteSong(song.id)}>Delete</button>
+                            
                         </tr>
                     )}
                 </tbody>
@@ -31,5 +33,9 @@ function SongTable(props) {
         </div>
      );
 }
+
+
+
+
 
 export default SongTable;

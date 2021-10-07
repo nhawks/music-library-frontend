@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      tableHeads: ['Genre', 'Artist', 'Song Title', 'Album', 'Release Date', 'Likes', 'Dislikes'],
+      tableHeads: ['Genre', 'Artist', 'Song Title', 'Album', 'Release Date', 'Likes', 'Dislikes', 'Delete Song'],
       songs: [],
     }
 
@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getAllSongs()
+    this.deleteSong()
   }
 
   async getAllSongs(){
@@ -24,11 +25,15 @@ class App extends Component {
       songs: response.data
     })
   }
+
+  async deleteSong(){
+    let response = await axios.delete(`http://127.0.0.1:8000/music/`)
+  }
   
   render() { 
     return ( 
       <div className="container-fluid">
-        <SongTable songs={this.state.songs} headers={this.state.tableHeads}/>
+        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong()}/>
       </div>
 
     );
