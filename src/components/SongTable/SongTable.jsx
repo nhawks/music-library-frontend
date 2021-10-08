@@ -1,12 +1,20 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+
 
 function SongTable(props) {
+
+    const [searchTerm, setsearchTerm] = useState("");
+
     return ( 
-        <div>
+        <div className="container">
             <h2>Music Table</h2>
-            <table>
-                <thead>
+            <input type="text" placeholder="Search By : Genre, Artist, Song Title, Album, or Release Date" className="form-control"
+            onChange = {(event) =>{
+                setsearchTerm(event.target.value)
+            }}
+            />
+            <table className="table table-bordered">
+                <thead className="thead-dark">
                 <tr>
                     {props.headers.map((header) =>
                         <th>{header}</th>
@@ -14,7 +22,19 @@ function SongTable(props) {
                 </tr>
                 </thead>
                 <tbody>
-                    {props.songs.map((song) =>
+                    {props.songs.filter(value => {
+                        if (searchTerm === "") {
+                            return value
+                        } else if(
+                            value.genre.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                            || value.artist.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                            || value.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                            || value.album.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                            || value.release_date.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                        ){
+                            return value
+                        }
+                    }).map((song) =>(
                         <tr key={song.id}>
                             <td>{song.genre}</td>
                             <td>{song.artist}</td>
@@ -25,16 +45,13 @@ function SongTable(props) {
                             <td>{song.dislikes}</td>
                             <button onClick={() => props.delete(song.id, song)}>Delete</button>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </table>
             <br />
         </div>
      );
 }
-
-
-
 
 
 export default SongTable;
