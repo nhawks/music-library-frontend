@@ -32,10 +32,15 @@ class App extends Component {
     window.location.reload(false)
   }
 
-  deleteSong = (song_id) => {
+  deleteSong = (song_id, song) => {
     let songURL = `${this.URL}${song_id}/`
-    axios.delete(`${songURL}`)
-    this.refreshPage()
+    let song_index = this.state.songs.indexOf(song)
+    let updatedSongs = this.state.songs
+    updatedSongs.splice(song_index, 1)
+    this.setState({
+      songs: updatedSongs
+    })
+    axios.delete(songURL)
   }
 
   addSong = (song) => {
