@@ -16,7 +16,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getAllSongs()
-    this.deleteSong()
   }
 
   async getAllSongs(){
@@ -26,14 +25,17 @@ class App extends Component {
     })
   }
 
-  async deleteSong(){
-    let response = await axios.delete(`http://127.0.0.1:8000/music/`)
+  deleteSong = (song_id) => {
+    let songURL = `http://127.0.0.1:8000/music/${song_id}/`
+    axios.delete(`${songURL}`)
   }
+
+  
   
   render() { 
     return ( 
       <div className="container-fluid">
-        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong()}/>
+        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong}/>
       </div>
 
     );

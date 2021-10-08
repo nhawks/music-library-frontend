@@ -23,7 +23,7 @@ function SongTable(props) {
                             <td>{song.release_date}</td>
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
-                            <button onClick={deleteSong(song.id)}>Delete</button>
+                            <button onClick={() => props.delete(song.id)}>Delete</button>
                             
                         </tr>
                     )}
