@@ -2,7 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
 import SongTable from './SongTable/SongTable';
-import AddSong from './AddSong/AddSong';
+import AddSongForm from './AddSongForm/AddSongForm';
 
 class App extends Component {
   constructor(props) {
@@ -15,12 +15,14 @@ class App extends Component {
 
   }
 
+  URL = 'http://127.0.0.1:8000/music/'
+
   componentDidMount() {
     this.getAllSongs()
   }
 
   async getAllSongs(){
-    let response = await axios.get('http://127.0.0.1:8000/music/')
+    let response = await axios.get(this.URL)
     this.setState({
       songs: response.data
     })
@@ -31,18 +33,23 @@ class App extends Component {
   }
 
   deleteSong = (song_id) => {
-    let songURL = `http://127.0.0.1:8000/music/${song_id}/`
+    let songURL = `${this.URL}${song_id}/`
     axios.delete(`${songURL}`)
     this.refreshPage()
   }
 
+  addSong = (song) => {
+    axios.post(this.URL, song)
+    .catch(err => alert(`Invalid Form Entry
+${err} | Bad Request`))
+  }
   
   
   render() { 
     return ( 
       <div className="container-fluid">
         <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong}/>
-        <AddSong />
+        <AddSongForm addSong={this.addSong} />
       </div>
 
     );
