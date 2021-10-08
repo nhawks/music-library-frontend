@@ -15,7 +15,7 @@ function SongTable(props) {
                 </thead>
                 <tbody>
                     {props.songs.map((song) =>
-                        <tr>
+                        <tr key={song.id}>
                             <td>{song.genre}</td>
                             <td>{song.artist}</td>
                             <td>{song.title}</td>
@@ -24,7 +24,6 @@ function SongTable(props) {
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
                             <button onClick={() => props.delete(song.id, song)}>Delete</button>
-                            
                         </tr>
                     )}
                 </tbody>
