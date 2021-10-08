@@ -25,9 +25,14 @@ class App extends Component {
     })
   }
 
+  refreshPage = () => {
+    window.location.reload(false)
+  }
+
   deleteSong = (song_id) => {
     let songURL = `http://127.0.0.1:8000/music/${song_id}/`
     axios.delete(`${songURL}`)
+    this.refreshPage()
   }
 
   
