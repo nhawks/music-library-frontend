@@ -39,6 +39,11 @@ class App extends Component {
   }
 
   addSong = (song) => {
+    let addSongs = this.state.songs
+    addSongs.push(song)
+    this.setState({
+      songs: addSongs
+    })
     axios.post(this.URL, song)
     .catch(err => alert(`Invalid Form Entry
 ${err} | Bad Request`))
