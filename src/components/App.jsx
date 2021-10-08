@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
 import SongTable from './SongTable/SongTable';
+import AddSong from './AddSong/AddSong';
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
     return ( 
       <div className="container-fluid">
         <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong}/>
+        <AddSong />
       </div>
 
     );
