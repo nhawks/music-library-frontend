@@ -1,9 +1,10 @@
-import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import SongTable from './SongTable/SongTable';
 import AddSongForm from './AddSongForm/AddSongForm';
-import EditSong from './EditSong/EditSong';
+
 
 class App extends Component {
   constructor(props) {
@@ -15,20 +16,45 @@ class App extends Component {
         'Dislikes','Edit', 'Delete Song'
       ],
       songs: [],
+      showEditModal: false,
+      showAddModal: false,
     }
   }
 
+  song = null
   URL = 'http://127.0.0.1:8000/music/'
+
+  showEdit = () => {
+    this.setState({ showEditModal: true})
+    this.forceUpdate()
+  }
+
+  showAdd = () => {
+    this.setState({ showAddModal: true})
+  }
+
+  hideEdit = () => {
+    this.setState({ showEditModal: false})
+  }
+
+  hideAdd = () => {
+    this.setState({ showAddModal: false})
+  }
 
   componentDidMount() {
     this.getAllSongs()
   }
-
+  
   async getAllSongs(){
     let response = await axios.get(this.URL)
     this.setState({
       songs: response.data
     })
+  }
+
+  getSong = (obj) => {
+    this.song = obj
+    console.log(this.song)
   }
 
   refreshPage = () => {
@@ -47,11 +73,11 @@ class App extends Component {
   }
 
   addSong = (song) => {
-    let addSongs = this.state.songs
 
     if (this.hasEmptyValues(song)) {
-      alert('Please fill out each section in the form.')
+      alert('Please fill out each section on the form.')
     } else {
+      let addSongs = this.state.songs
       addSongs.push(song)
       this.setState({
         songs: addSongs
@@ -61,18 +87,22 @@ class App extends Component {
     }
   }
 
-  editSong = (song_id, song) => {
-    let songURL = `${this.URL}${song_id}/`
-    let updatedSongs = this.state.songs
-    let songIndex = updatedSongs.indexOf(song)
-    updatedSongs[songIndex] = song
-    this.setState({
-      songs: updatedSongs
-    })
-    axios.put(songURL, song)
-    .catch(err => alert(`Invalid Form Entry
-${err} | Bad Request`))
-  }
+  // updateSong = (song, updatedSong) => {
+  //   if (this.hasEmptyValues(updatedSong)) {
+  //     alert('Please fill out each section on the form')
+  //   } else {
+  //     let songURL = `${this.URL}${song.id}/`
+  //     let updatedSongs = this.state.songs
+  //     let songIndex = updatedSongs.indexOf(song)
+  //     updatedSongs[songIndex] = updatedSong
+  //     this.setState({
+  //       songs: updatedSongs
+  //     })
+  //     axios.put(songURL, updatedSong)
+  //     .catch(err => alert(`Invalid Form Entry
+  //   ${err} | Bad Request`))
+  //   }
+  // }
 
   hasEmptyValues = (song) => {
     for (let value in song){
@@ -88,15 +118,12 @@ ${err} | Bad Request`))
   render() { 
     return ( 
       <div className="container-fluid">
-        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} edit={this.EditSong}/>
+        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} get={this.getSong} show={this.showEdit} />
         <AddSongForm addSong={this.addSong} />
-        <EditSong editSong={this.editSong} />
+        <EditSong update={this.updateSong} song={this.song} show={this.props.showEditModal} />
       </div>
-
     );
   }
 }
  
 export default App;
-
-
