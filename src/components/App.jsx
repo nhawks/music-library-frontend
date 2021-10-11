@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SongTable from './SongTable/SongTable';
 import AddSongForm from './AddSongForm/AddSongForm';
+import EditSong from './EditSong/EditSong';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      tableHeads: ['Genre', 'Artist', 'Song Title', 'Album', 'Release Date', 'Likes', 'Dislikes', 'Delete Song'],
+      tableHeads: [
+        'Genre', 'Artist', 'Song Title',
+        'Album', 'Release Date', 'Likes',
+        'Dislikes','Edit', 'Delete Song'
+      ],
       songs: [],
     }
-
-
   }
 
   URL = 'http://127.0.0.1:8000/music/'
@@ -32,11 +35,11 @@ class App extends Component {
     window.location.reload(false)
   }
 
-  deleteSong = (song_id, song) => {
-    let songURL = `${this.URL}${song_id}/`
-    let song_index = this.state.songs.indexOf(song)
+  deleteSong = (song) => {
+    let songURL = `${this.URL}${song.id}/`
     let updatedSongs = this.state.songs
-    updatedSongs.splice(song_index, 1)
+    let songIndex = updatedSongs.indexOf(song)
+    updatedSongs.splice(songIndex, 1)
     this.setState({
       songs: updatedSongs
     })
@@ -53,13 +56,27 @@ class App extends Component {
     .catch(err => alert(`Invalid Form Entry
 ${err} | Bad Request`))
   }
+
+  editSong = (song_id, song) => {
+    let songURL = `${this.URL}${song_id}/`
+    let updatedSongs = this.state.songs
+    let songIndex = updatedSongs.indexOf(song)
+    updatedSongs[songIndex] = song
+    this.setState({
+      songs: updatedSongs
+    })
+    axios.put(songURL, song)
+    .catch(err => alert(`Invalid Form Entry
+${err} | Bad Request`))
+  }
   
   
   render() { 
     return ( 
       <div className="container-fluid">
-        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong}/>
+        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} edit={this.EditSong}/>
         <AddSongForm addSong={this.addSong} />
+        <EditSong editSong={this.editSong} />
       </div>
 
     );
