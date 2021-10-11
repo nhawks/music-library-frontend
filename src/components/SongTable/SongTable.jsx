@@ -7,14 +7,14 @@ function SongTable(props) {
 
     return ( 
         <div className="container">
-            <h2>Music Table</h2>
+            <h2 className='text-dark'>Music Table</h2>
             <input type="text" placeholder="Search By : Genre, Artist, Song Title, Album, or Release Date" className="form-control"
             onChange = {(event) =>{
                 setsearchTerm(event.target.value)
             }}
             />
-            <table className="table table-bordered">
-                <thead className="thead-dark">
+            <table className="table table-dark table-hover">
+                <thead>
                 <tr>
                     {props.headers.map((header) =>
                         <th>{header}</th>
@@ -43,7 +43,8 @@ function SongTable(props) {
                             <td>{song.release_date}</td>
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
-                            <button onClick={() => props.delete(song.id, song)}>Delete</button>
+                            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='close' onClick={() => { props.get(song); props.show() }}>Edit</button>
+                            <button onClick={() => props.delete(song)}>Delete</button>
                         </tr>
                     ))}
                 </tbody>
