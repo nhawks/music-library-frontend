@@ -48,13 +48,17 @@ class App extends Component {
 
   addSong = (song) => {
     let addSongs = this.state.songs
-    addSongs.push(song)
-    this.setState({
-      songs: addSongs
-    })
-    axios.post(this.URL, song)
-    .catch(err => alert(`Invalid Form Entry
-${err} | Bad Request`))
+
+    if (this.hasEmptyValues(song)) {
+      alert('Please fill out each section in the form.')
+    } else {
+      addSongs.push(song)
+      this.setState({
+        songs: addSongs
+      })
+      axios.post(this.URL, song).catch(err => alert(`Invalid Form Entry
+    ${err} | Bad Request`))
+    }
   }
 
   editSong = (song_id, song) => {
@@ -68,6 +72,16 @@ ${err} | Bad Request`))
     axios.put(songURL, song)
     .catch(err => alert(`Invalid Form Entry
 ${err} | Bad Request`))
+  }
+
+  hasEmptyValues = (song) => {
+    for (let value in song){
+      if (song[value] === ''){
+        return true
+      } else {
+      return false
+      }
+    }
   }
   
   
