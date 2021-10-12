@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Accordion from 'react-bootstrap/Accordion'
 
 
+
 class AddSongForm extends Component {
     constructor(props) {
         super(props);
@@ -51,7 +52,7 @@ class AddSongForm extends Component {
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Album" aria-label="Album" name="album" onChange={this.handleChange} value={this.state.album}/>
                                     </div>
                                     <div class="col-md">
-                                        <input type="text" class="form-control bg-light text-primary" placeholder="Release Date" aria-label="Release Date" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
+                                        <input type="date" class="form-control bg-light text-primary" placeholder="Release Date" aria-label="Release Date" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
                                     </div>
                                 </div>
                                     <div className="row g-3">
