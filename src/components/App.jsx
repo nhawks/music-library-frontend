@@ -14,7 +14,7 @@ class App extends Component {
       tableHeads: [
         'Genre', 'Artist', 'Song Title',
         'Album', 'Release Date', 'Likes',
-        'Dislikes', 'Delete Song'
+        'Dislikes', 'Delete'
       ],
       songs: [],
       showEditModal: false,
