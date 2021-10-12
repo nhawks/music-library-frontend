@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Accordion from 'react-bootstrap/Accordion'
 
+
 class AddSongForm extends Component {
     constructor(props) {
         super(props);
@@ -36,19 +37,19 @@ class AddSongForm extends Component {
                         <Accordion.Body className="accordion-body">
                             <form onSubmit={this.handleSubmit} className="row row-cols-lg-auto g-3 align-items-center">
                                 <div class="row g-3">
-                                    <div class="col">
+                                    <div class="col-md">
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Genre" aria-label="Genre" name="genre" placeholder="Genre" onChange={this.handleChange} value={this.state.genre} />
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md">
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Artist" aria-label="Artist" name="artist" onChange={this.handleChange} value={this.state.artist}/>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md">
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Song Title" aria-label="Song Title" name="title" onChange={this.handleChange} value={this.state.title}/>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md">
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Album" aria-label="Album" name="album" onChange={this.handleChange} value={this.state.album}/>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-md">
                                         <input type="text" class="form-control bg-light text-primary" placeholder="Release Date" aria-label="Release Date" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
                                     </div>
                                 </div>
@@ -60,8 +61,6 @@ class AddSongForm extends Component {
                 </Accordion.Item>
             </Accordion>
             </div>
-
-
          );
     }
 }
