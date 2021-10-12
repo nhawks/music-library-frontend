@@ -7,7 +7,6 @@ function SongTable(props) {
 
     return ( 
         <div className="container">
-            <h2 className='text-dark'>Music Table</h2>
             <input type="text" placeholder="Search By : Genre, Artist, Song Title, Album, or Release Date" className="form-control"
             onChange = {(event) =>{
                 setsearchTerm(event.target.value)
