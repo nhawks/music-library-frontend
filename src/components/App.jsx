@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SongTable from './SongTable/SongTable';
 import AddSongForm from './AddSongForm/AddSongForm';
+import TitleBar from './TitleBar/TitleBar';
 
 
 class App extends Component {
@@ -118,6 +119,7 @@ class App extends Component {
   render() { 
     return ( 
       <div className="container-fluid">
+        <TitleBar/>
         <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} get={this.getSong} show={this.showEdit} />
         <AddSongForm addSong={this.addSong} />
       </div>
