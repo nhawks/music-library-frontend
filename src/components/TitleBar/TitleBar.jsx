@@ -3,7 +3,7 @@ import './TitleBar.css'
 
 function TitleBar(){
     return(
-        <div className="row row-space">
+        <div className="row row-space p-3">
             <div className="col-md-12" style={{ padding: 0 }}>
                 <div className="titlebar-nav">
                     <h2>
