@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Table from 'react-bootstrap/Table'
 
 
 function SongTable(props) {
@@ -7,17 +8,18 @@ function SongTable(props) {
 
     return ( 
         <div className="container">
-            <input type="text" placeholder="Search By : Genre, Artist, Song Title, Album, or Release Date" className="form-control"
+            <input type="text" placeholder="Type Here to Search By : Genre , Artist , Song Title , Album , or Release Date" className="form-control bg-black text-primary text-center p-2"
             onChange = {(event) =>{
                 setsearchTerm(event.target.value)
             }}
             />
-            <table className="table table-hover">
-                <thead>
+            <Table className="table table-hover text-center" responsive>
+                <thead className="bg-primary">
                 <tr>
                     {props.headers.map((header) =>
                         <th>{header}</th>
                     )}
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,11 +44,15 @@ function SongTable(props) {
                             <td>{song.release_date}</td>
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
-                            <button onClick={() => props.delete(song)}>Delete</button>
+                            <td>
+                                <button className="btn text-primary" onClick={() => props.delete(song)}>
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
-            </table>
+            </Table>
             <br />
         </div>
      );
