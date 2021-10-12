@@ -120,8 +120,8 @@ class App extends Component {
     return ( 
       <div className="container-fluid">
         <TitleBar/>
-        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} get={this.getSong} show={this.showEdit} />
         <AddSongForm addSong={this.addSong} />
+        <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} get={this.getSong} show={this.showEdit} />
       </div>
     );
   }
