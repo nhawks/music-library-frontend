@@ -6,9 +6,9 @@ function TitleBar(){
         <div className="row row-space">
             <div className="col-md-12" style={{ padding: 0 }}>
                 <div className="titlebar-nav">
-                    <h1>
-                        <span className="material-icons fa-sm">library_music</span> Music Library 
-                    </h1>
+                    <h2>
+                        <span className="material-icons fa-sm text-primary">library_music</span> Music Library 
+                    </h2>
                 </div>
             </div>
         </div>
