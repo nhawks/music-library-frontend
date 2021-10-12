@@ -29,12 +29,13 @@ class AddSongForm extends Component {
     render() { 
         return ( 
             <div className="container">
-            <Accordion className="accordion">
-                <Accordion.Item eventKey="0" className="accordion-item">
-                    <Accordion.Header className="accordion-header">
-                        <p className="text-dark text-center">Add Song to Library</p>
+            <Accordion>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        <span class="material-icons text-primary"> playlist_add </span>
+                        <h6 className="text-primary"> Add Song to Library </h6>
                     </Accordion.Header>
-                        <Accordion.Body className="accordion-body">
+                        <Accordion.Body>
                             <form onSubmit={this.handleSubmit} className="row row-cols-lg-auto g-3 align-items-center">
                                 <div class="row g-3">
                                     <div class="col-md">
