@@ -13,7 +13,7 @@ class App extends Component {
       tableHeads: [
         'Genre', 'Artist', 'Song Title',
         'Album', 'Release Date', 'Likes',
-        'Dislikes','Edit', 'Delete Song'
+        'Dislikes', 'Delete Song'
       ],
       songs: [],
       showEditModal: false,
@@ -120,7 +120,6 @@ class App extends Component {
       <div className="container-fluid">
         <SongTable songs={this.state.songs} headers={this.state.tableHeads} delete={this.deleteSong} get={this.getSong} show={this.showEdit} />
         <AddSongForm addSong={this.addSong} />
-        <EditSong update={this.updateSong} song={this.song} show={this.props.showEditModal} />
       </div>
     );
   }

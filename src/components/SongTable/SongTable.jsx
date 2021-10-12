@@ -43,7 +43,6 @@ function SongTable(props) {
                             <td>{song.release_date}</td>
                             <td>{song.likes}</td>
                             <td>{song.dislikes}</td>
-                            <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='close' onClick={() => { props.get(song); props.show() }}>Edit</button>
                             <button onClick={() => props.delete(song)}>Delete</button>
                         </tr>
                     ))}
