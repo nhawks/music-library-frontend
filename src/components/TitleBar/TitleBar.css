@@ -8,11 +8,10 @@ h1{
     color: white;
     padding-top: 0.2em;
     padding-bottom: 0.4em;
-    padding-left: 1em;
 }
 
 .material-icons {
-    color: red;
+    color: #006eff;
     vertical-align: baseline;
 }
 
