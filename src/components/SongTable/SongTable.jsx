@@ -19,7 +19,6 @@ function SongTable(props) {
                     {props.headers.map((header) =>
                         <th>{header}</th>
                     )}
-                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
