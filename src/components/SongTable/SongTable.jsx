@@ -12,7 +12,7 @@ function SongTable(props) {
                 setsearchTerm(event.target.value)
             }}
             />
-            <table className="table table-dark table-hover">
+            <table className="table table-hover">
                 <thead>
                 <tr>
                     {props.headers.map((header) =>
@@ -34,7 +34,7 @@ function SongTable(props) {
                             return value
                         }
                     }).map((song) =>(
-                        <tr key={song.id}>
+                        <tr className="table-active" key={song.id}>
                             <td>{song.genre}</td>
                             <td>{song.artist}</td>
                             <td>{song.title}</td>
