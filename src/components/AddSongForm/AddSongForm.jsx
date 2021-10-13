@@ -11,7 +11,9 @@ class AddSongForm extends Component {
             artist: "",
             title: "",
             album: "",
-            release_date: ""
+            release_date: "",
+            likes: 0,
+            dislikes: 0
         }
         
     }
