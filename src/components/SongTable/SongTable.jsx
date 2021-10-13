@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table'
 
+// TODO: Import Edit Modal, add button that calls Edit Modal function on table for each song
 
 function SongTable(props) {
 

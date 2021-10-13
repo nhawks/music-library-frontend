@@ -74,7 +74,6 @@ class App extends Component {
   }
 
   addSong = (song) => {
-
     if (this.hasEmptyValues(song)) {
       alert('Please fill out each section on the form.')
     } else {
@@ -87,7 +86,19 @@ class App extends Component {
     ${err} | Bad Request`))
     }
   }
+  
+  // Checks to see if user input is blank/null then sends alert
+  hasEmptyValues = (song) => {
+    for (let value in song){
+      if (song[value] === ''){
+        return true
+      } else {
+      return false
+      }
+    }
+  }
 
+  // TODO: Update song method
   // updateSong = (song, updatedSong) => {
   //   if (this.hasEmptyValues(updatedSong)) {
   //     alert('Please fill out each section on the form')
@@ -105,15 +116,10 @@ class App extends Component {
   //   }
   // }
 
-  hasEmptyValues = (song) => {
-    for (let value in song){
-      if (song[value] === ''){
-        return true
-      } else {
-      return false
-      }
-    }
-  }
+  // TODO: Create function to handle likes/dislikes use if/else to decide which URL to send the request to
+  //* Send PATCH request to:
+  //* Like - http://127.0.0.1:8000/music/[song.id]/thumbs_up
+  //* Dislike - http://127.0.0.1:8000/music/[song.id]/thumbs_down
   
   
   render() { 
