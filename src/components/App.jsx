@@ -73,6 +73,7 @@ class App extends Component {
     axios.delete(songURL)
   }
 
+  // TODO: Add method to check if date field is valid
   addSong = (song) => {
     if (this.hasEmptyValues(song)) {
       alert('Please fill out each section on the form.')
@@ -82,8 +83,6 @@ class App extends Component {
       this.setState({
         songs: addSongs
       })
-      axios.post(this.URL, song).catch(err => alert(`Invalid Form Entry
-    ${err} | Bad Request`))
     }
   }
   
